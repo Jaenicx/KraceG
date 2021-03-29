@@ -6,10 +6,12 @@ import "../qml/control"
 import QtGraphicalEffects 1.0
 
 Window {
+    id: mainWindow
     width: 1000
     height: 560
     visible: true
     title: qsTr("KG")
+    flags: Qt.Window | Qt.FramelessWindowHint
 
     Rectangle {
         id: background
@@ -100,16 +102,19 @@ Window {
                     MinimizeButton{
                         width: 35
                         height: 35
+                        onClicked: mainWindow.showMinimized()
                     }
 
                     MaximizeButton {
                         width: 35
                         height: 35
+                        onClicked: mainWindow.showMaximized()
                     }
 
                     CloseButton {
                         width: 35
                         height: 35
+                        onClicked: mainWindow.close()
                     }
 
                 }
