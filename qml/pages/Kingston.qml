@@ -2,7 +2,20 @@ import QtQuick 2.0
 import QtQuick.Controls 2.15
 
 Item {
+    Connections{
+        target: backend
+
+       function setTemp(temp){
+        tempText.text = temp
+    }
+}
+    Component.onCompleted:{
+        backend.sendTempText(tempText.text)
+        backend.setCondText(condText.text)
+
+    }
     width: 900
+
 
     Rectangle {
         id: kinPage
@@ -39,27 +52,27 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.pointSize: 12
+
             }
 
-            Text {
-                id: tempBox
+            Label {
+                id: tempText
                 x: 34
                 y: 74
                 width: 53
                 height: 49
                 color: "#ffffff"
-                text: qsTr("29")
+                text: qsTr("")
                 font.pixelSize: 40
             }
 
-            Text {
-                id: weatherBox
+            Label {
+                id: condText
                 x: 19
                 y: 137
                 width: 82
                 height: 49
                 color: "#ffffff"
-                text: qsTr("Sunny")
                 font.pixelSize: 30
             }
         }
@@ -110,7 +123,5 @@ Item {
         }
     }
 
-    Connections{
-        target: backend
-    }
+
 }
